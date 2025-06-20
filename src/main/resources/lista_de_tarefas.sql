@@ -1,0 +1,7 @@
+
+CREATE TABLE IF NOT EXISTS tarefa (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    texto TEXT NOT NULL,
+    concluido INTEGER NOT NULL DEFAULT 0,
+    data_alteracao TEXT
+);

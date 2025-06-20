@@ -1,7 +1,9 @@
 package org.project;
 
+import BDconnection.BDconnection;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        BDconnection.iniciar();
     }
 }
