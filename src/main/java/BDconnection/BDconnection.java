@@ -12,27 +12,23 @@ import static BDconnection.FileUtils.loadTextFile;
 
 public class BDconnection {
     public static void iniciar() {
-        try (
-                Connection con = Database.getInstance().getConnection();
-                Statement statement = con.createStatement();
-        ) {
+        Connection con = Database.getInstance().getConnection(); // usa a conexão única
+        try {
+            Statement statement = con.createStatement();
             statement.setQueryTimeout(30);
 
             String sql = loadTextFile("lista_de_tarefas.sql");
             statement.execute(sql);
-            /* statement.executeUpdate("drop table if exists person");
-            statement.executeUpdate("create table person (id integer, name string)");
-            statement.executeUpdate("insert into person values(1, 'leo')");
-            statement.executeUpdate("insert into person values(2, 'yui')"); */
-            ResultSet rs = statement.executeQuery("select * from tarefa");
+
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM tarefa");
             while (rs.next()) {
-                System.out.println("name = " + rs.getString("texto"));
-                System.out.println("id = " + rs.getInt("id"));
+                System.out.println("Tarefa: " + rs.getString("texto"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace(System.err);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        } catch (SQLException | IOException e) {
+            System.err.println("Erro ao inicializar banco:");
+            e.printStackTrace();
         }
     }
 }
