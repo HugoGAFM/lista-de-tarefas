@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controllers.BuscarTarefasController">
+
+    <Label text="Buscar Tarefas" style="-fx-font-size: 18px;"/>
+
+    <ComboBox fx:id="filtros" promptText="Filtro da Pesquisa" maxWidth="300"/>
+
+    <Button text="Buscar Tarefas" onAction="#BuscarTarefas" maxWidth="200"/>
+
+    <TextArea fx:id="resultadoArea" editable="false" wrapText="true" maxWidth="300" prefHeight="200"/>
+</VBox>

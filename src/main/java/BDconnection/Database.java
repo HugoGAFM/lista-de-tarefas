@@ -9,7 +9,7 @@ public class Database {
 
     private static final String URL = "jdbc:sqlite:lista-de-tarefas.db";
     private static Database INSTANCE = null;
-    private Connection connection;
+    private static Connection connection;
 
     private Database() {
         try {

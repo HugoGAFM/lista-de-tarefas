@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TabPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+         fx:controller="Controllers.Navegador">
+    <Tab text="Cadastro">
+        <fx:include source="CadastroTarefas.fxml" fx:id="tarefaCtrl"/>
+    </Tab>
+    <Tab text="Alterar Status">
+        <fx:include source="AlterarStatus.fxml" fx:id="alterarCtrl"/>
+    </Tab>
+    <Tab text="Busca">
+        <fx:include source="BuscaTarefas.fxml" fx:id="buscaCtrl"/>
+    </Tab>
+</TabPane>

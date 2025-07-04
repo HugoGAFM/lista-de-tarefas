@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Tasks {
-    private int id; // adicionado para refletir a tabela
+    private int id;
     private String text;
     private boolean done;
     private String dataAlteracao;
