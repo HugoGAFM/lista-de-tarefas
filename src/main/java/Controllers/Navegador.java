@@ -19,19 +19,19 @@ public class Navegador {
             Parent tarefasPane = loaderTarefas.load();
             CadastroTarefasController tarefaCtrl = loaderTarefas.getController();
             tarefaCtrl.setTasksDAO(tasksDAO);
-            Tab tabTarefa = new Tab("tarefas", tarefasPane);
+            Tab tabTarefa = new Tab("Cadastrar Tarefas", tarefasPane);
 
             FXMLLoader loaderAlterar = new FXMLLoader(getClass().getResource("/AlterarStatus.fxml"));
             Parent alterarPane = loaderAlterar.load();
             AlterarStatusController alterarCtrl = loaderAlterar.getController();
             alterarCtrl.setTasksDAO(tasksDAO);
-            Tab tabAlterar = new Tab("alterar", alterarPane);
+            Tab tabAlterar = new Tab("Alterar o Status", alterarPane);
 
             FXMLLoader loaderBusca = new FXMLLoader(getClass().getResource("/BuscaTarefas.fxml"));
             Parent buscaPane = loaderBusca.load();
             BuscarTarefasController buscaCtrl = loaderBusca.getController();
             buscaCtrl.setTasksDAO(tasksDAO);
-            Tab tabBusca = new Tab("Empréstimo", buscaPane);
+            Tab tabBusca = new Tab("Busca de Tarefas", buscaPane);
 
             tabPane.getTabs().addAll(tabTarefa, tabAlterar, tabBusca);
             tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);

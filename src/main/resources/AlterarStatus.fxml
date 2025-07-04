@@ -7,5 +7,5 @@
     <Button text="🔄 Carregar Tarefas" onAction="#CarregarTarefas"/>
     <ComboBox fx:id="tarefaSelecionada" promptText="Selecione a tarefa" maxWidth="300"/>
     <ComboBox fx:id="statusSelecionado" promptText="Selecione o status" maxWidth="300"/>
-    <Button text="Salvar Livro" onAction="#handleSalvar"/>
+    <Button text="Alterar Tarefa" onAction="#handleSalvar"/>
 </VBox>

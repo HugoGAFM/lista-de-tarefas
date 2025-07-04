@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import DAO.TasksDAO;
 
 public class CadastroTarefasController {
-    @FXML private TextField textoField;
+    @FXML private TextField texto;
 
     private TasksDAO tasksDAO;
 
@@ -16,8 +16,8 @@ public class CadastroTarefasController {
     @FXML
     public void handleSalvar() {
         try {
-            tasksDAO.adicionarTarefa(textoField.getText());
-            showMessage("Livro cadastrado com sucesso!");
+            tasksDAO.adicionarTarefa(texto.getText());
+            showMessage("Tarefa cadastrada com sucesso!");
             limparCampos();
         } catch (Exception e) {
             showMessage("Erro: " + e.getMessage());
@@ -25,7 +25,7 @@ public class CadastroTarefasController {
     }
 
     private void limparCampos() {
-        textoField.clear();
+        texto.clear();
     }
 
     private void showMessage(String msg) {

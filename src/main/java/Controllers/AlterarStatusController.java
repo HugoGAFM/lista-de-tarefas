@@ -8,23 +8,26 @@ import DAO.TasksDAO;
 import java.util.List;
 
 public class AlterarStatusController {
-    @FXML ComboBox tarefaSelecionada;
-    @FXML ComboBox statusSelecionado;
+    @FXML ComboBox<Tasks> tarefaSelecionada;
+    @FXML ComboBox<String> statusSelecionado;
 
     private TasksDAO tasksDAO;
 
     public void setTasksDAO(TasksDAO dao) {
         this.tasksDAO = dao;
+        statusSelecionado.getItems().addAll("Concluída", "Pendente");
+
     }
 
     @FXML
     public void handleSalvar() {
-        statusSelecionado.getItems().addAll("false", "true");
         try {
-            int id = Integer.parseInt((String) tarefaSelecionada.getValue());
-            boolean status = (boolean) statusSelecionado.getValue();
-            tasksDAO.alterarStatus(id, status);
+            Tasks task = tarefaSelecionada.getValue();
+            boolean status = statusSelecionado.getSelectionModel().getSelectedItem().equals("Concluída");
+
+            tasksDAO.alterarStatus(task.getId(), status);
             showMessage("Status alterado com sucesso!");
+            CarregarTarefas();
         } catch (Exception e) {
             showMessage("Erro: " + e.getMessage());
         }
@@ -32,12 +35,13 @@ public class AlterarStatusController {
 
     @FXML
     public void CarregarTarefas() {
+        tarefaSelecionada.getItems().clear();
         try {
             String a = "";
             List<Tasks> resultado = tasksDAO.listarTarefas(a);
 
             for (Tasks task : resultado) {
-                tarefaSelecionada.getItems().addAll(task);
+                tarefaSelecionada.getItems().add(task);
             }
 
         } catch (Exception e) {

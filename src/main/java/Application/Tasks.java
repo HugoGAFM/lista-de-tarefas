@@ -36,4 +36,14 @@ public class Tasks {
     public void setText(String text) { this.text = text; }
     public void setDone(boolean done) { this.done = done; }
     public void setDataAlteracao(String dataAlteracao) { this.dataAlteracao = dataAlteracao; }
+
+    @Override
+    public String toString() {
+        if (done) {
+            return (" |X|  - " + this.text + " - " +  this.dataAlteracao);
+        }
+        else{
+            return (" |  |  - " + this.text + " - " +  this.dataAlteracao);
+        }
+    }
 }

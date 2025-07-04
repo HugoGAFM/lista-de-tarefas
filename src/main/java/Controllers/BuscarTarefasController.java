@@ -8,25 +8,29 @@ import DAO.TasksDAO;
 import java.util.List;
 
 public class BuscarTarefasController {
-    @FXML private ComboBox filtros = new ComboBox<>();
+    @FXML private ComboBox<String> filtros;
     @FXML private TextArea resultadoArea;
 
     private TasksDAO tasksDAO;
 
     public void setTasksDAO(TasksDAO dao) {
         this.tasksDAO = dao;
+        filtros.getItems().addAll("Todas", "Pendentes", "Concluidas");
     }
 
     @FXML
     public void BuscarTarefas() {
-        filtros.getItems().addAll("Todas", "Pendentes", "Concluídas");
+        resultadoArea.setText("");
         try {
-            String filtro = String.valueOf(filtros.getValue());
+            String filtro = filtros.getValue().toLowerCase();
             List<Tasks> resultado = tasksDAO.listarTarefas(filtro);
-
-            for (Tasks task : resultado) {
-                resultadoArea.setText(task.toString());
+            StringBuilder sb = new StringBuilder();
+            for (Tasks tarefa : resultado) {
+                sb.append("Título: ").append(tarefa.getText()).append("\n");
+                sb.append("Status: ").append(tarefa.isDone() ? "Concluida" : "Pendente").append("\n");
+                sb.append("------------------------\n");
             }
+            resultadoArea.setText(sb.toString());
 
         } catch (Exception e) {
             resultadoArea.setText("Erro na consulta.");
