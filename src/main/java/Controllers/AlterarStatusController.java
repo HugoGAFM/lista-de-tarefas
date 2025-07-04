@@ -16,7 +16,7 @@ public class AlterarStatusController {
     public void setTasksDAO(TasksDAO dao) {
         this.tasksDAO = dao;
         statusSelecionado.getItems().addAll("Concluída", "Pendente");
-
+        CarregarTarefas();
     }
 
     @FXML
@@ -31,11 +31,34 @@ public class AlterarStatusController {
         } catch (Exception e) {
             showMessage("Erro: " + e.getMessage());
         }
+        tarefaSelecionada.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Tasks item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(tarefaSelecionada.getPromptText());
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+        statusSelecionado.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(statusSelecionado.getPromptText());
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
     }
 
     @FXML
     public void CarregarTarefas() {
         tarefaSelecionada.getItems().clear();
+        statusSelecionado.setValue(null);
         try {
             String a = "";
             List<Tasks> resultado = tasksDAO.listarTarefas(a);

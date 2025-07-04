@@ -23,6 +23,7 @@ public class BuscarTarefasController {
         resultadoArea.setText("");
         try {
             String filtro = filtros.getValue().toLowerCase();
+            filtros.setValue(null);
             List<Tasks> resultado = tasksDAO.listarTarefas(filtro);
             StringBuilder sb = new StringBuilder();
             for (Tasks tarefa : resultado) {
@@ -32,6 +33,17 @@ public class BuscarTarefasController {
             }
             resultadoArea.setText(sb.toString());
 
+            filtros.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(filtros.getPromptText());
+                    } else {
+                        setText(item.toString());
+                    }
+                }
+            });
         } catch (Exception e) {
             resultadoArea.setText("Erro na consulta.");
         }
